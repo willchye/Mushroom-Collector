@@ -1,0 +1,91 @@
+body{
+background-image:url(Trippy-Wallpaper-ZV.jpg);
+}
+h1{
+  margin: 0 auto;
+  width:50%;
+  text-align:center;
+  font-family: 'Poiret One', cursive;
+  color:white;
+  margin-top:20px;
+  font-size:50px
+}
+#M{
+  color:red;
+  font-size:60px;
+}
+#main{
+  margin: 0 auto;
+  width:65%;
+
+}
+#main2{
+  margin: 0 auto;
+  width:65%;
+  margin-top:50px;
+
+}
+#instructions{
+  margin:20px auto;
+  text-align:center;
+  font-family: 'Poiret One', cursive;
+  font-weight:700;
+  color:white;
+  margin-bottom:60px;
+}
+#mushroom1{
+  float:left;
+  padding:20px;
+
+}
+#mushroom2{
+  float:left;
+  padding:20px;
+}
+#mushroom3{
+  float:left;
+  padding:20px;
+}
+#mushroom4{
+  float:left;
+  padding:20px;
+}
+.image{
+  width:85%;
+  height:85%;
+  cursor: pointer;
+}
+.image:hover{
+  width:90%;
+  height:90%;
+}
+#scoreboard{
+  margin:0 auto;
+  font-family: 'Poiret One', cursive;
+  width:45%;
+
+}
+#number{
+    clear:both;
+    color:yellow;
+    width:33.33%;
+    font-size:70px;
+    height:100px;
+    margin-top:50px;
+
+}
+#winloss{
+    color:white;
+    width:33.33%;
+    font-size:30px;
+    height:100px;
+      margin-top:50px;
+
+}
+#total2{
+  color:white;
+  width:33%;
+  font-size:40px;
+  height:100px;
+    margin-top:50px;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Psychic Game</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+<header>
+<h1><span id="M">M</span>ushroom Collector</h1>
+</header>
+
+<section id=main>
+	<div id=instructions>
+
+	<p> You will be given a random number at the start of the game.</p>
+	<p>There are four mushrooms below. By clicking on a mushroom you will add a specific amount of points to your total score.</p>
+	<p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number </p>
+	<p>The value of each mushroom is hidden from you until you click on it.</p>
+	<p>Each time when the game starts, the game will change the values of each crystal and the random number. </p>
+</div>
+
+</section>
+
+	<div class="row" id=scoreboard>
+		<div class="col-md-5" id="number">
+		<span id="goal"></span>
+	  </div>
+	<div class="col-md-3" id=winloss>
+		<p>wins: <span id="wins"></span></p>
+		<p>losses: <span id="losses"></span></p>
+	</div>
+	<div class="col-md-4" id=total2>
+		<p>total score:  <span id="total"></span></p>
+	</div>
+</div>
+
+<section id=main2>
+<div id=mushroom1>
+	<img class=image id=first src="assets/Mushroom Super.ico"/>
+</div>
+<div id=mushroom2>
+	<img class=image id=second src="assets/Life Mushroom.ico"/>
+</div>
+<div id=mushroom3>
+	<img class=image id=third src="assets/Bee Mushroom.ico"/>
+</div>
+<div id=mushroom4>
+	<img class=image id=fourth src="assets/Mushroom 1UP.ico"/>
+</div>
+</section>
+
+
+<script>
+
+//Global Variables ==============================================================================================================
+//variables here for the win/los counts, set a starting number
+var winCount = 0;
+var loseCount = 0;
+//set up the var here although no input, but need to set it at global scale, and replace from inner function
+var goaltotal;
+var firstnum;
+var secondnum;
+var thirdnum;
+var fourthnum;
+var totalnum = 0;
+var audioElement=document.createElement('audio');
+audioElement.setAttribute('src','assets/Mario-coin-sound.mp3');
+
+var audioLost=document.createElement('audio');
+audioLost.setAttribute('src','assets/super_mario_dies.mp3');
+
+var audioWin=document.createElement('audio');
+audioWin.setAttribute('src','assets/super_mario_1_up.mp3');
+
+//function 1 ====================================================================================
+//assign a random number to each of the gem and the goal number
+function startGame() {
+
+//we want goaltotal number to be between 19 and 120, which is 101 differences and start at 19
+   goaltotal = Math.floor(Math.random() * 101) + 19;
+   $('#goal').text(goaltotal);
+
+//we want random number each gem to be betwen 1 and 12
+   firstnum = Math.floor(Math.random() * 12);
+   $('#first').text(firstnum);
+
+
+   secondnum = Math.floor(Math.random() * 12);
+   $('#second').text(secondnum);
+
+
+   thirdnum = Math.floor(Math.random() * 12);
+   $('#third').text(thirdnum);
+
+
+   fourthnum = Math.floor(Math.random() * 12);
+   $('#fourth').text(fourthnum);
+
+
+}
+
+
+//on click functions to add the click values============================================================
+//adds the totalnum which starts at 0 to the firstnum (random num generated earlier), and saves/updates the totalnum
+   $('#first').on('click', function() {
+       totalnum += firstnum
+			 //same as totalnum = firstnum + totalnum
+       $('#total').text(totalnum);
+       checkGame()
+			 //calls the checkgame function so if else statement runs when each click/value add occurs
+			 audioElement.play();
+   });
+
+   $('#second').on('click', function() {
+       totalnum += secondnum
+       $('#total').text(totalnum);
+       checkGame()
+			 audioElement.play();
+   });
+
+   $('#third').on('click', function() {
+       totalnum += thirdnum
+       $('#total').text(totalnum);
+       checkGame()
+			 audioElement.play();
+   });
+
+   $('#fourth').on('click', function() {
+       totalnum += fourthnum
+       $('#total').text(totalnum);
+       console.log(totalnum);
+       checkGame()
+			 audioElement.play();
+   });
+
+
+//function2=============================================================================================================
+//this if else statement function is called inside the on clicks for when the number matches
+//it will reset with startGame() to generate new numbers again, and also add win counts, else loses occur
+	 function checkGame() {
+	  if (totalnum === goaltotal) {
+	 		 winCount++;
+	 		 $('#wins').text(winCount);
+			 audioWin.play();
+	 		 startGame();
+
+	  }
+	  else if (totalnum > goaltotal) {
+	 		 loseCount++;
+	 		 $('#losses').text(loseCount);
+			 audioLost.play();
+	 		 startGame();
+
+	  }
+	 }
+
+//call function===================================================================================
+   startGame();
+
+
+
+</script>
+
+</body>
+</html>
